@@ -5,25 +5,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/** HomeController
- * Path: "/"
+/** SearchController
+ * Path: "/search"
  * Purpose: Controller for the home page of Éta.
  *
  */
 @Controller
-public class HomeController {
+public class SearchController {
 
     // ===================
     // Instance Variables
     // ===================
-    private final String path = "";
+    private final String path = "/search";
 
 
     // =====================
     // Dependency Injection
     // =====================
     @Autowired
-    public HomeController(/* Dependencies go here */) {
+    public SearchController(/* Dependencies go here */) {
         // Instance Variables definition
         // etc.
     }
@@ -33,16 +33,15 @@ public class HomeController {
     // Page Methods
     // =============
 
-    /** home()
-     * Path: "/"
+    /** search()
+     * Path: "/search"
      * Purpose:
      *
      * @return
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
-    public String home(){
-        /* To-do: Find if user is sign in and if send him to the authentication page */
-        return path + "/Index";
+    public String search(){
+        return path + "/Search";
     }
 
 }

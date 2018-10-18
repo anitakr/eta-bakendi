@@ -14,7 +14,7 @@
 
 <!-- Content  -->
     <body>
-        <h1>Éta - Home</h1>
+        <h1>Éta - Sign Up</h1>
         <a href="/">Home</a>
         <a href="/authentication/signup">Sign Up</a>
         <a href="/authentication/login">Login</a>
