@@ -14,10 +14,12 @@ import java.util.List;
 @Controller
 public class ResultController {
 
+    private final String path = "/restaurant";
+
     @Autowired
     public ResultController() {}
 
-    @RequestMapping(value="/results", method = RequestMethod.GET)
+    @RequestMapping(value= path + "/results", method = RequestMethod.GET)
     public String results(Model model) {
         // TODO connect to repository
         List<Restaurant> results = new ArrayList<>();
@@ -38,10 +40,10 @@ public class ResultController {
         results.add(restaurant3);
 
         model.addAttribute("results", results);
-        return "Results";
+        return path + "/Results";
     }
 
-    @RequestMapping(value = "/restaurant/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = path + "/{id}", method = RequestMethod.GET)
     public String restaurant(@PathVariable long id, Model model) {
         // TODO connect to repository
         Restaurant restaurant = new Restaurant();
@@ -49,6 +51,6 @@ public class ResultController {
         restaurant.setName("Vegamót");
         restaurant.setLocation("Hér og þar");
         model.addAttribute("restaurant", restaurant);
-        return "Restaurant";
+        return path + "/Restaurant";
     }
 }

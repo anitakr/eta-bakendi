@@ -40,7 +40,7 @@ public class SearchController {
      * @return
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
-    public String search(){
+    public String search() {
         return path + "/Search";
     }
 
