@@ -1,16 +1,21 @@
 package project.persistence.entities;
 
+import javax.persistence.*;
+
+@Entity
 public class Restaurant {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String location;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,5 +33,12 @@ public class Restaurant {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Restaurant [name=%s]",
+                name);
     }
 }
