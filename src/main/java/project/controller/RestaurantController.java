@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.Restaurant;
 import project.service.RestaurantLookUpService;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 @Controller
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
     private final String path = "/restaurant";
@@ -26,8 +23,7 @@ public class RestaurantController {
     }
 
 
-
-    @RequestMapping(value = path + "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String restaurant(@PathVariable long id, Model model) {
         Restaurant resault = restaurantLookUpService.findOne(id);
         Restaurant restaurant = new Restaurant();
