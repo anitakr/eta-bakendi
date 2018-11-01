@@ -42,6 +42,8 @@ public class HomeController {
     @RequestMapping(value = path, method = RequestMethod.GET)
     public String home(){
         /* To-do: Find if user is sign in and if send him to the authentication page */
+
+
         return path + "/Index";
     }
 
