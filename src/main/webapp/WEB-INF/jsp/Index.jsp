@@ -10,16 +10,44 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
+        <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
     </head>
 
 <!-- Content  -->
     <body>
-        <h1>Éta - Home</h1>
-        <a href="/">Home</a>
-        <a href="/authentication/signup">Sign Up</a>
-        <a href="/authentication/login">Login</a>
-        <a href="/search">Search</a>
-        <a href="/insert">Insert</a>
+        <header>
+           <ul>
+               <li style="float:left"><a href="/">ÉTA</a></li>
+               <li><a href="/authentication/login" class="button">Login</a></li>
+               <li><a href="/authentication/signup" class="button">Sign Up</a></li>
+           </ul>
+
+        </header>
+
+        <h1>Éta</h1>
+        <h2>Þar sem þú finnur veitingastaðinn þinn</h2>
+
+        <div class="main-content">
+            <a href="/search">
+                <div class="card">
+                <div class="container">
+                    <h4><b>Leita</b></h4>
+                    <p>Smellið hér til að leita að veitingastað</p>
+                </div>
+                </div>
+            </a>
+
+            <a href="/insert">
+                <div class="card">
+                <div class="container">
+                    <h4><b>Bæta við</b></h4>
+                    <p>Smellið hér til að bæta við veitingastað</p>
+                </div>
+                </div>
+            </a>
+        </div>
+
 
     </body>
     <footer>
