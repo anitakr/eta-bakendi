@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <html lang="en" >
@@ -30,22 +31,20 @@
 
         <fieldset>
             <h3>Leita eftir nafni</h3>
-                <form method = "POST" action="restaurant/Result.jsp">
-                    <p>Veitingastaður: <input type = "text" name = "rest_name"></p>
+                <sf:form method = "POST" modelAttribute="restaurant" action="search?useName=true">
+                    <p>Veitingastaður: <sf:input path="name" type="text"/></p>
                     <input type="submit" name="submit" value="Leita" />
 
-                </form>
+                </sf:form>
         </fieldset>
 
 
         <fieldset>
-            <form method="post" action="restaurant/Result.jsp">
+            <sf:form method="POST" modelAttribute="restaurant" action="search?useName=false">
 
                 <h3>Verðbil</h3>
 
-                    <input type="radio" name="verð" value="ódýrt" /> Ódýrt
-                    <input type="radio" name="verð" value="milli" /> Milli
-                    <input type="radio" name="verð" value="dýrt" /> Dýrt
+                    <sf:radiobuttons path="price" items="${prices}" />
 
                 <h3>Tegund</h3>
 
@@ -59,8 +58,17 @@
 
                     </br>
                     <input type="submit" name="submit" value="Leita" />
-            </form>
+            </sf:form>
         </fieldset>
+    <c:if test="${not empty results}">
+        <fieldset>
+        <h3>Leitarniðurstöður</h3>
+        <c:forEach var="restaurant" items="${results}">
+            <a href="/restaurant/${restaurant.id}">${restaurant.name}</a>
+        </c:forEach>
+        </fieldset>
+    </c:if>
+
     </body>
     <footer>
     </footer>

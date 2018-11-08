@@ -24,4 +24,9 @@ public class RestaurantSearchServiceImplementation implements RestaurantSearchSe
         restaurants.removeIf(item -> !item.getGenres().containsAll(restaurant.getGenres()));
         return restaurants;
     }
+
+    @Override
+    public List<Restaurant> searchByName(Restaurant restaurant) {
+        return repository.findByName(restaurant.getName());
+    }
 }

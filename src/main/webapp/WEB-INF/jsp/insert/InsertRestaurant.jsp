@@ -39,7 +39,7 @@
         href="/restaurant/${newRestaurant.id}">${newRestaurant.name}</a>
 </c:if>
 <fieldset>
-    <sf:form method="POST" modelAttribute="restaurant" action="/insert">
+    <sf:form method="POST" modelAttribute="restaurant" action="insert">
 
         <table>
             <tr>
