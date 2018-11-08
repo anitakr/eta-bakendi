@@ -30,11 +30,12 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Restaurant findOne(Long id);
 
     /**
-     * Search for a restaurant with the inserted search parameters
+     * Search for a restaurant by genre and price
      * @return a list of restaurants that match the query
      */
-    // TODO fix this
-    @Query(value = "SELECT p FROM Restaurant p where length(p.name) >= 3 ")
-    List<Restaurant> findByQuery();
+    List<Restaurant> findByGenreAndPrice(String genre, String price);
+
+    List<Restaurant> findAll();
+
 }
 

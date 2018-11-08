@@ -19,7 +19,7 @@
         <a href="/authentication/signup">Sign Up</a>
         <a href="/authentication/login">Login</a>
         <a href="/search">Search</a>
-        <a href="/insert/InsertRestaurant">Insert</a>
+        <a href="/insert">Insert</a>
 
     </body>
     <footer>

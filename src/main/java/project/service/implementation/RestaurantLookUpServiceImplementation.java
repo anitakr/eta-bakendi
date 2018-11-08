@@ -20,4 +20,9 @@ public class RestaurantLookUpServiceImplementation implements RestaurantLookUpSe
     public Restaurant findOne(Long id) {
         return repository.findOne(id);
     }
+
+    @Override
+    public void save(Restaurant restaurant) {
+        repository.save(restaurant);
+    }
 }

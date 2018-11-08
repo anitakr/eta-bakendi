@@ -1,4 +1,4 @@
-package project.service.Implementation;
+package project.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,9 @@ public class RestaurantSearchServiceImplementation implements RestaurantSearchSe
     }
 
     @Override
-    public List<Restaurant> search() {
-        return repository.findByQuery();
+    public List<Restaurant> search(Restaurant restaurant) {
+        List<Restaurant> restaurants = repository.findByGenreAndPrice(restaurant.getGenre(), restaurant.getPrice());
+        restaurants.removeIf(item -> !item.getTags().containsAll(restaurant.getTags()));
+        return restaurants;
     }
 }
