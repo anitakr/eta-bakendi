@@ -20,8 +20,8 @@ public class RestaurantSearchServiceImplementation implements RestaurantSearchSe
 
     @Override
     public List<Restaurant> search(Restaurant restaurant) {
-        List<Restaurant> restaurants = repository.findByGenreAndPrice(restaurant.getGenre(), restaurant.getPrice());
-        restaurants.removeIf(item -> !item.getTags().containsAll(restaurant.getTags()));
+        List<Restaurant> restaurants = repository.findByPrice(restaurant.getPrice());
+        restaurants.removeIf(item -> !item.getGenres().containsAll(restaurant.getGenres()));
         return restaurants;
     }
 }

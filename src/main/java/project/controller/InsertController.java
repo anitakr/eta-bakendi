@@ -15,19 +15,19 @@ public class InsertController {
 
     private final String path = "/insert";
     private RestaurantInsertService restaurantInsertService;
-    private final List<String> tags = new ArrayList<>();
+    private final List<String> genres = new ArrayList<>();
 
     @Autowired
     public InsertController(RestaurantInsertService restaurantInsertService) {
         this.restaurantInsertService = restaurantInsertService;
-        // Add all available tags
-        tags.add("Ítalskur");
-        tags.add("Skyndibiti");
-        tags.add("Pizza");
-        tags.add("Tælenskur");
-        tags.add("Kebab");
-        tags.add("Vegan");
-        tags.add("Tapas");
+        // Add all available genres
+        genres.add("Ítalskur");
+        genres.add("Skyndibiti");
+        genres.add("Pizza");
+        genres.add("Tælenskur");
+        genres.add("Kebab");
+        genres.add("Vegan");
+        genres.add("Tapas");
     }
 
     /**
@@ -38,11 +38,13 @@ public class InsertController {
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
     public String InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
+
+        // TODO is user logged in?
         // Saves the restaurant to the database
         restaurantInsertService.save(restaurant);
 
         // Gets things ready for a new restaurant to be added
-        model.addAttribute("tags", tags);
+        model.addAttribute("genres", genres);
         model.addAttribute("restaurant", new Restaurant());
 
         // Information for the inserted restaurant to inform the user the inserted restaurant
@@ -58,7 +60,8 @@ public class InsertController {
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
     public String insertHome( Model model) {
-        model.addAttribute("tags", tags);
+        // TODO is user logged in?  if note redirect to login
+        model.addAttribute("genres", genres);
         model.addAttribute("restaurant", new Restaurant());
         return path + "/InsertRestaurant";
     }

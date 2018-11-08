@@ -10,29 +10,39 @@
 
 <c:when test="${not empty restaurant}">
 
+<!-- Head -->
 <head>
     <title>${restaurant.name}</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
 </head>
 <body>
-<div>
-    <h1>${restaurant.name}</h1>
-    <p> Staðsetning: ${restaurant.location}</p>
-    <p> Tegund: ${restaurant.genre}</p>
-    <p> Verð: ${restaurant.price}</p>
-    <c:if test="${not empty restaurant.tags}">
-        <h3>Tögg tegd ${restaurant.name}:</h3>
-        <table class="tags">
-            <c:forEach var="tag" items="${restaurant.tags}">
+<header>
+    <ul>
+        <li style="float:left"><a href="/">ÉTA</a></li>
+        <li><a href="/authentication/login" class="button">Login</a></li>
+        <li><a href="/authentication/signup" class="button">Sign Up</a></li>
+    </ul>
+
+</header>
+<h1>${restaurant.name}</h1>
+<fieldset>
+    <h3> Staðsetning:</h3> ${restaurant.location}
+    <h3> Verð: </h3> ${restaurant.price}
+    <c:if test="${not empty restaurant.genres}">
+        <h3>Tegundir tengdar ${restaurant.name}:</h3>
+        <table class="genres">
+            <c:forEach var="genre" items="${restaurant.genres}">
                 <tr>
-                    <p>${tag}</p>
+                    <p>${genre}</p>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
 
 
-</div>
-<div>
+</fieldset>
+<fieldset>
     <h3>Umsagnir um ${restaurant.name}</h3>
     <c:choose>
         <%--If the model has an attribute with the name `postitNotes`--%>
@@ -61,43 +71,43 @@
             <p>Engar umsagnir til um þennan stað</p>
         </c:otherwise>
     </c:choose>
-</div>
+</fieldset>
+<fieldset>
+    <sf:form method="POST" modelAttribute="review" action="/restaurant/${restaurant.id}">
 
-<sf:form method="POST" modelAttribute="review" action="/restaurant/${restaurant.id}">
-
-    <table>
-        <tr>
-            <td>
-                <h3>
-                    Gefðu veitingastað umsögn
-                </h3>
-            </td>
-        </tr>
-        <tr>
-            <td> Einkunn:</td>
-            <td><%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                <sf:select path="rating" type="int">
-                    <sf:option value="1">1</sf:option>
-                    <sf:option value="2">2</sf:option>
-                    <sf:option value="3">3</sf:option>
-                    <sf:option value="4">4</sf:option>
-                    <sf:option value="5">5</sf:option>
-                </sf:select>
-            </td>
-        </tr>
-        <tr>
-            <td> Umsögn:</td>
-                <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="text" type="text" placeholder="Umsögn um veitingastað"/></td>
-        </tr>
-    </table>
-    <input type="submit" VALUE="Vista umsögn"/>
-</sf:form>
+        <table>
+            <tr>
+                <td>
+                    <h3>
+                        Gefðu veitingastað umsögn
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td> <h3>Einkunn:</h3></td>
+                <td><%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                    <sf:select path="rating" type="int">
+                        <sf:option value="1">1</sf:option>
+                        <sf:option value="2">2</sf:option>
+                        <sf:option value="3">3</sf:option>
+                        <sf:option value="4">4</sf:option>
+                        <sf:option value="5">5</sf:option>
+                    </sf:select>
+                </td>
+            </tr>
+            <tr>
+                <td> <h3>Umsögn: </h3></td>
+                    <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                <td><sf:input path="text" type="text" placeholder="Umsögn um veitingastað"/></td>
+            </tr>
+        </table>
+        <input type="submit" VALUE="Vista umsögn" class="submit-button"/>
+    </sf:form>
+</fieldset>
 </c:when>
 <c:otherwise>
     <h2>Engin veitingastaður finnst hér</h2>
 </c:otherwise>
 </c:choose>
 </body>
-<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

@@ -13,13 +13,12 @@ public class Restaurant {
     private String name;
     private String location;
     private String price;
-    private String genre;
     private String description;
 
     @ElementCollection
-    @CollectionTable(name="Tags", joinColumns=@JoinColumn(name="tag_id"))
-    @Column(name="tags")
-    private List<String> tags = new ArrayList<>();
+    @CollectionTable(name="Genre", joinColumns=@JoinColumn(name="genre_id"))
+    @Column(name="genres")
+    private List<String> genres = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Review> reviewList;
@@ -54,20 +53,12 @@ public class Restaurant {
         return description;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
     public String getPrice() {
         return price;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public void setPrice(String price) {
@@ -89,11 +80,11 @@ public class Restaurant {
         this.reviewList = reviewList;
     }
 
-    public List<String> getTags() {
-        return tags;
+    public List<String> getGenres() {
+        return genres;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 }

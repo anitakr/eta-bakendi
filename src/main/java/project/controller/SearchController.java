@@ -47,7 +47,7 @@ public class SearchController {
     @RequestMapping(value = path, method = RequestMethod.POST)
     public String search(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
         List<Restaurant> restaurantList = restaurantSearchService.search(restaurant);
-                model.addAttribute("results", restaurantList);
+        model.addAttribute("results", restaurantList);
         return path + "/Search";
     }
 

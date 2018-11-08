@@ -61,9 +61,6 @@
                     <input type="submit" name="submit" value="Leita" />
             </form>
         </fieldset>
-
-
-
     </body>
     <footer>
     </footer>

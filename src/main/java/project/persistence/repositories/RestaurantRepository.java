@@ -30,10 +30,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Restaurant findOne(Long id);
 
     /**
-     * Search for a restaurant by genre and price
+     * Search for a restaurant by price
      * @return a list of restaurants that match the query
      */
-    List<Restaurant> findByGenreAndPrice(String genre, String price);
+    List<Restaurant> findByPrice(String price);
 
     List<Restaurant> findAll();
 
