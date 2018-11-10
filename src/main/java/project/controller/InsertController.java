@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Restaurant;
+import project.service.AuthorizationService;
 import project.service.RestaurantInsertService;
 
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class InsertController {
 
     private final String path = "/insert";
     private RestaurantInsertService restaurantInsertService;
+    private AuthorizationService authorizationService;
     private final List<String> genres = new ArrayList<>();
 
     @Autowired
-    public InsertController(RestaurantInsertService restaurantInsertService) {
+    public InsertController(RestaurantInsertService restaurantInsertService, AuthorizationService authorizationService) {
         this.restaurantInsertService = restaurantInsertService;
+        this.authorizationService = authorizationService;
         // Add all available genres
         genres.add("Ítalskur");
         genres.add("Skyndibiti");
@@ -32,8 +35,9 @@ public class InsertController {
 
     /**
      * Inserts a restaurant objet into the database
+     *
      * @param restaurant to insert into the database
-     * @param model for the jsp file returned
+     * @param model      for the jsp file returned
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
@@ -55,11 +59,12 @@ public class InsertController {
 
     /**
      * Displays a form to insert values for new restaurant
+     *
      * @param model for information for the jsp file
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
-    public String insertHome( Model model) {
+    public String insertHome(Model model) {
         // TODO is user logged in?  if note redirect to login
         model.addAttribute("genres", genres);
         model.addAttribute("restaurant", new Restaurant());

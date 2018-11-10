@@ -35,7 +35,11 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
      */
     List<Restaurant> findByPrice(String price);
 
-    List<Restaurant> findAll();
-
+    /**
+     * Searches for restaurants by name
+     * @param name to search for
+     * @return a list of restaurant that have a name matching the parameter
+     */
+    List<Restaurant> findByName(String name);
 }
 
