@@ -39,8 +39,6 @@ public class AuthenticationController {
     public AuthenticationController(UserService userService,
                                     UserValidator userValidator,
                                     AuthorizationService authorizationService) {
-        // Instance Variables definition
-        // etc.
         this.userService = userService;
         this.userValidator = userValidator;
         this.authorizationService = authorizationService;
@@ -64,10 +62,16 @@ public class AuthenticationController {
      */
     @RequestMapping(value = path + "/signup", method = RequestMethod.GET)
     public String signup(Model model){
+        if(this.authorizationService.isLoggedIn()) {
+            System.err.println("Logged in");
+        }
+        else {
+            System.err.println("Not logged in");
+        }
         model.addAttribute("user", new User());
         model.addAttribute("users", this.userService.findAll());
 
-        model.addAttribute("currentUser", authorizationService.getUser() );
+        model.addAttribute("currentUser", authorizationService.getUser());
         return path + "/SignUp";
     }
 
