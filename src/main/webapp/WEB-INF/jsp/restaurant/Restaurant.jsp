@@ -45,14 +45,9 @@
 <fieldset>
     <h3>Umsagnir um ${restaurant.name}</h3>
     <c:choose>
-        <%--If the model has an attribute with the name `postitNotes`--%>
         <c:when test="${not empty restaurant.reviewList}">
-            <%--Create a table for the Postit Notes--%>
             <table class="notes">
 
-                    <%--For each postit note, that is in the list that was passed in the model--%>
-                    <%--generate a row in the table--%>
-                    <%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
                 <c:forEach var="review" items="${restaurant.reviewList}">
                     <tr>
                         <div>
@@ -66,7 +61,6 @@
             </table>
         </c:when>
 
-        <%--If all tests are false, then do this--%>
         <c:otherwise>
             <p>Engar umsagnir til um þennan stað</p>
         </c:otherwise>
@@ -81,11 +75,15 @@
                     <h3>
                         Gefðu veitingastað umsögn
                     </h3>
+
+                    <c:if test="${noUserForReview}">
+                        <p>Þú verður að vera innskráð/ur til að geta gefið veitingastað umsögn</p>
+                    </c:if>
                 </td>
             </tr>
             <tr>
-                <td> <h3>Einkunn:</h3></td>
-                <td><%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                <td><h3>Einkunn:</h3></td>
+                <td>
                     <sf:select path="rating" type="int">
                         <sf:option value="1">1</sf:option>
                         <sf:option value="2">2</sf:option>
@@ -96,8 +94,7 @@
                 </td>
             </tr>
             <tr>
-                <td> <h3>Umsögn: </h3></td>
-                    <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                <td><h3>Umsögn: </h3></td>
                 <td><sf:input path="text" type="text" placeholder="Umsögn um veitingastað"/></td>
             </tr>
         </table>

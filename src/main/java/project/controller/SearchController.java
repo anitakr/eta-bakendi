@@ -39,27 +39,40 @@ public class SearchController {
      * Path: "/search"
      * Purpose: Displays the search home with input fields for the search
      *
-     * @return the input fields for the search
+     * @return the search jsp with input fields
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
     public String searchHome(Model model) {
+        // Search parameters will be collected into a Restaurant object
         model.addAttribute("restaurant", new Restaurant());
+        // Show all prices category
         model.addAttribute("prices", prices);
         return path + "/Search";
     }
 
+    /**
+     * Handles when the user post a search request
+     * @param restaurant containing search parameters
+     * @param searchByName true if user is searching by name or searching by price and genres
+     * @param model for the jsp
+     * @return a jsp file containing the search site with added search resaults
+     */
     @RequestMapping(value = path, method = RequestMethod.POST)
     public String search(@ModelAttribute("restaurant") Restaurant restaurant, @RequestParam("useName") boolean searchByName, Model model) {
         List<Restaurant> results;
+
+        // Are we are searching by name or by price and genre
         if (searchByName) {
             results = restaurantSearchService.searchByName(restaurant);
         } else {
             results = restaurantSearchService.search(restaurant);
         }
+        // Add results to model
         model.addAttribute("results", results);
+
+        // Get things ready for new search
         model.addAttribute("prices", prices);
         model.addAttribute("restaurant", new Restaurant());
-
         return path + "/Search";
     }
 }

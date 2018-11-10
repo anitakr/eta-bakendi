@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import project.persistence.entities.Restaurant;
 import project.service.AuthorizationService;
 import project.service.RestaurantInsertService;
@@ -11,6 +13,9 @@ import project.service.RestaurantInsertService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This controller handles it when a user inserts a restaurant to the database
+ */
 @Controller
 public class InsertController {
 
@@ -23,6 +28,7 @@ public class InsertController {
     public InsertController(RestaurantInsertService restaurantInsertService, AuthorizationService authorizationService) {
         this.restaurantInsertService = restaurantInsertService;
         this.authorizationService = authorizationService;
+
         // Add all available genres
         genres.add("Ítalskur");
         genres.add("Skyndibiti");
@@ -41,20 +47,26 @@ public class InsertController {
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
-    public String InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
+    public ModelAndView InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
+        // User can only insert a restaurant if he is logged in
+        if (authorizationService.isLoggedIn()) {
 
-        // TODO is user logged in?
-        // Saves the restaurant to the database
-        restaurantInsertService.save(restaurant);
+            // Saves the restaurant to the database
+            restaurantInsertService.save(restaurant);
 
-        // Gets things ready for a new restaurant to be added
-        model.addAttribute("genres", genres);
-        model.addAttribute("restaurant", new Restaurant());
+            // Gets things ready for a new restaurant to be added
+            model.addAttribute("genres", genres);
+            model.addAttribute("restaurant", new Restaurant());
 
-        // Information for the inserted restaurant to inform the user the inserted restaurant
-        model.addAttribute("newRestaurant", restaurant);
-        model.addAttribute("inserted", true);
-        return path + "/InsertRestaurant";
+            // Information for the inserted restaurant to inform the user the inserted restaurant
+            model.addAttribute("newRestaurant", restaurant);
+            model.addAttribute("inserted", true);
+            return new ModelAndView( "insert/InsertRestaurant");
+
+            // If user is not logged in we redirect him to the log in site
+        } else {
+            return new ModelAndView(new RedirectView("/authentication/login"));
+        }
     }
 
     /**
@@ -64,10 +76,18 @@ public class InsertController {
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.GET)
-    public String insertHome(Model model) {
-        // TODO is user logged in?  if note redirect to login
-        model.addAttribute("genres", genres);
-        model.addAttribute("restaurant", new Restaurant());
-        return path + "/InsertRestaurant";
+    public ModelAndView insertHome(Model model) {
+
+        // User can only wisit the insert part of the page if he is logged in
+        if (authorizationService.isLoggedIn()) {
+            // Add all genres options
+            model.addAttribute("genres", genres);
+            // New empty restaurant
+            model.addAttribute("restaurant", new Restaurant());
+            return new ModelAndView("insert/InsertRestaurant");
+
+            // If user is not logged in we redirect him to the log in site
+        } else
+            return new ModelAndView(new RedirectView("/authentication/login"));
     }
 }
