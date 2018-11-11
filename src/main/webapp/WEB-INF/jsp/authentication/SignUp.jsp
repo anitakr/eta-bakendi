@@ -11,14 +11,15 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
+        <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
     </head>
 
 <!-- Content  -->
     <body>
         <%@ include file="../Menu.jsp"%>
 
-
-        <sf:form method="POST" modelAttribute="user" action="/authentication/signup">
+        <sf:form method="POST" modelAttribute="user" action="signup">
 
             <table>
                 <tr>
@@ -46,48 +47,6 @@
 
         </sf:form>
 
-        <c:choose>
-            <c:when test="${not empty currentUser}">
-                <table class="userInfo">
-                    <tr>
-                        <td>${currentUser.username}</td>
-                    <tr>
-                    </tr>
-                    <td>${currentUser.password}</td>
-                    <tr>
-                    </tr>
-                    <td>${currentUser.email}</td>
-                    </tr>
-                </table>
-            </c:when>
-            <c:otherwise>
-                <h3>Not logged in</h3>
-            </c:otherwise>
-        </c:choose>
-        <p>--------------------------</p>
-        <c:choose>
-        <c:when test="${not empty users}">
-            <table class="users">
-                <c:forEach var="user" items="${users}">
-                    <tr>
-                        <td>${user.username}</td>
-                    <tr>
-                    </tr>
-                        <td>${user.password}</td>
-                    <tr>
-                    </tr>
-                        <td>${user.email}</td>
-                    </tr>
-                    </tr>
-                        <td>${user.type}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:when>
-        <c:otherwise>
-            <h3>No users!</h3>
-        </c:otherwise>
-        </c:choose>
     </body>
     <footer>
     </footer>

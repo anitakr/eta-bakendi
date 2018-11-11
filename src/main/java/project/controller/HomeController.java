@@ -49,12 +49,12 @@ public class HomeController {
      *
      * @return The view
      */
-    @RequestMapping(value = path, method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model){
 
         // The model uses the user attribute in its menu.
         if(this.authorizationService.isLoggedIn()) {
-            model.addAttribute("user", this.authorizationService.getUser());
+            model.addAttribute("usersession", this.authorizationService.getUser());
         }
 
         return "Index";

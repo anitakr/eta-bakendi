@@ -1,19 +1,28 @@
 package project.persistence.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
+/** User
+ * Purpose: Entity that stores users info.
+ *
+ * @author Elvar (eas20@hi.is)
+ */
 @Entity
 @Table(name = "users") // If you want to specify a table name, you can do so here
 public class User {
+
+    /** Type()
+     * Purpose: Enum to simplify the process when setting the type field of user.
+     *
+     */
     public enum Type {
         MANAGER, CASUAL
     }
 
-    // Declare that this attribute is the id
+
+    // =======
+    // Fields
+    // =======
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +37,22 @@ public class User {
 
     private Type type;
 
+
+    // =============
+    // Constructors
+    // =============
+
+    /** User()
+     * Purpose: Empty constructor
+     *
+     */
     public User() {
     }
 
+    /** User(...)
+     * Purpose: Constructor to inject all the info as you create the object.
+     *
+     */
     public User(String username, String password, String email, Type type) {
         this.username = username;
         this.password = password;
@@ -38,6 +60,9 @@ public class User {
         this.type = type;
     }
 
+    // ==============================
+    // Getters, Setters and ToString
+    // ==============================
     public Long getId() {
         return id;
     }

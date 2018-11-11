@@ -16,7 +16,7 @@ import project.service.UserService;
 
 
 /** AuthenticationController
- * Path: "/authentication"
+ * Path: "/"
  * Purpose: Controller for the authentication part of Éta.
  *
  * @author Elvar (eas20@hi.is)
@@ -27,7 +27,6 @@ public class AuthenticationController {
     // ===================
     // Instance Variables
     // ===================
-    private final String path = "/authentication";
     private final UserService userService;
     private final UserValidator userValidator;
     private final AuthorizationService authorizationService;
@@ -35,6 +34,15 @@ public class AuthenticationController {
     // =====================
     // Dependency Injection
     // =====================
+
+    /** AuthenticationController(...)
+     * Purpose: Constructor for the controller.
+     * The parameters are all dependencies.
+     *
+     * @param userService Service with access to the database.
+     * @param userValidator Validator for the sign up form.
+     * @param authorizationService Service to handle the session.
+     */
     @Autowired
     public AuthenticationController(UserService userService,
                                     UserValidator userValidator,
@@ -44,6 +52,11 @@ public class AuthenticationController {
         this.authorizationService = authorizationService;
     }
 
+    /** initBinder(WebDataBinder binder)
+     * Purpose: Binds the validator to the page.
+     *
+     * @param binder Binder to bind the validator to he page
+     */
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.addValidators(userValidator);
@@ -54,72 +67,93 @@ public class AuthenticationController {
     // Page Methods
     // =============
 
-    /** signup()
-     * Path: "/authentication/signup"
-     * Purpose:
+    /** signup(Model model)
+     * Path: "/signup"
+     * Purpose: Display the signup page with GET.
      *
-     * @return
+     * @return The view
      */
-    @RequestMapping(value = path + "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model){
-        if(this.authorizationService.isLoggedIn()) {
-            System.err.println("Logged in");
-        }
-        else {
-            System.err.println("Not logged in");
-        }
-        model.addAttribute("user", new User());
-        model.addAttribute("users", this.userService.findAll());
+
+        model.addAttribute("user", new User()); // For the form
 
         model.addAttribute("currentUser", authorizationService.getUser());
-        return path + "/SignUp";
+        return "authentication/SignUp";
     }
 
-    /** signup()
-     * Path: "/authentication/signup"
-     * Purpose:
+    /** signup(User user, BindingResult res)
+     * Path: "/signup"
+     * Purpose: Display the signup page with POST.
+     * After the user has filled out the sign up form.
      *
-     * @return
+     * @param user The user created from the form
+     * @param res Objects that holds info about error created during the validation process
+     * @return The view
      */
-    @RequestMapping(value = path + "/signup", method = RequestMethod.POST)
-    public String signupPost(@ModelAttribute("user") @Validated User user, BindingResult res, Model model){
-        System.err.println(res);
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String signupPost(@ModelAttribute("user") @Validated User user, BindingResult res){
+
+        // If the validator found any error we show the form again with error messages
         if(res.hasErrors()) {
-            return path + "/SignUp";
+            return "authentication/SignUp";
         }
+
+        // If the user did not select that he is a restaurant owner he is set as CASUAL user
         if(user.getType() == null) {
             user.setType(User.Type.CASUAL);
         }
+
         this.userService.save(user);
-        model.addAttribute("users", this.userService.findAll());
-        return path + "/SignUp";
+        return "redirect:/"; // Redirect the user to the home page.
     }
 
-    /** login()
-     * Path: "/authentication/login"
-     * Purpose:
+    /** login(Model model)
+     * Path: "/login"
+     * Purpose: Display the signup page with GET.
      *
-     * @return
+     * @return The view
      */
-    @RequestMapping(value = path + "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model){
-        model.addAttribute("user", new User());
-        return path + "/Login";
+
+        model.addAttribute("user", new User()); // For the form
+        return "authentication/Login";
     }
 
-    /** login()
-     * Path: "/authentication/login"
-     * Purpose:
+    /** login(User user)
+     * Path: "/login"
+     * Purpose: Display the signup page with POST.
+     * After user has filled out the form.
      *
-     * @return
+     * @param user The form from the user.
+     * @return The view
      */
-    @RequestMapping(value = path + "/login", method = RequestMethod.POST)
-    public String loginPost(@ModelAttribute("user") User user, Model model){
-        User u = this.userService.findByNameAndPass(user.getUsername(), user.getPassword());
-        model.addAttribute("user", u);
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPost(@ModelAttribute("user") User user){
 
-        this.authorizationService.setUser(u);
+        User u = this.userService.findByNameAndPass(user.getUsername(), user.getPassword()); // Search for user
 
-        return path + "/Login";
+        this.authorizationService.setUser(u); // Update the session
+
+        // Check if the login successful, then redirect to the home page
+        if(this.authorizationService.isLoggedIn()) {
+            return "redirect:/";
+        }
+        else {
+            return "authentication/Login";
+        }
+    }
+
+    /** logout()
+     * Path: "/logout"
+     * Purpose: Log out the user.
+     *
+     * @return The view
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(){
+        this.authorizationService.setUser(null);
+        return "redirect:/";
     }
 }
