@@ -15,12 +15,7 @@
 
 <!-- Content  -->
     <body>
-        <h1>Éta - Sign Up</h1>
-        <a href="/">Home</a>
-        <a href="/authentication/signup">Sign Up</a>
-        <a href="/authentication/login">Login</a>
-        <a href="/search">Search</a>
-        <a href="/insert">Insert</a>
+        <%@ include file="../Menu.jsp"%>
 
 
         <sf:form method="POST" modelAttribute="user" action="/authentication/signup">

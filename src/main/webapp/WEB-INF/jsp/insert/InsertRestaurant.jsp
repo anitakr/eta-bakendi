@@ -19,15 +19,7 @@
 
 <!-- Content  -->
 <body>
-
-<header>
-    <ul>
-        <li style="float:left"><a href="/">ÉTA</a></li>
-        <li><a href="/authentication/login" class="button">Login</a></li>
-        <li><a href="/authentication/signup" class="button">Sign Up</a></li>
-    </ul>
-
-</header>
+<%@ include file="../Menu.jsp"%>
 
 <body>
 <h1>
