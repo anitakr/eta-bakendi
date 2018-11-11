@@ -19,7 +19,6 @@ public class HomeController {
     // ===================
     // Instance Variables
     // ===================
-    private final String path = "";
     private final AuthorizationService authorizationService;
 
 
@@ -28,7 +27,6 @@ public class HomeController {
     // =====================
 
     /** HomeController(...)
-     * Path: "/authentication/signup"
      * Purpose: Constructor for the controller with dependency injections
      *
      * @param authorizationService Service to handle the session.
