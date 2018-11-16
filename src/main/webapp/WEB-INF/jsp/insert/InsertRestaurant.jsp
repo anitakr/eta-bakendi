@@ -52,20 +52,14 @@
             </tr>
             <tr>
                 <td><h3>Verð: </h3></td>
-                <td><%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                    <sf:select path="price" type="text" placeholder="Veldu verð">
-                        <sf:option value="Ódýrt">Ódýrt</sf:option>
-                        <sf:option value="Miðlungs">Milli</sf:option>
-                        <sf:option value="Dýrt">Dýrt</sf:option>
-                    </sf:select>
-                </td>
+                <td><sf:radiobuttons path="price" items="${prices}" checked="checked" /></td>
             </tr>
             <tr>
                 <td>
                     Tegundir
                 </td>
                 <td>
-                    <sf:checkboxes path="genres" items="${genres}"/>
+                    <sf:checkboxes path="genres" items="${genres}" />
 
                 </td>
             </tr>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import project.persistence.entities.Restaurant;
+import project.persistence.entities.User;
 import project.service.AuthorizationService;
 import project.service.RestaurantInsertService;
 
@@ -23,12 +24,16 @@ public class InsertController {
     private RestaurantInsertService restaurantInsertService;
     private AuthorizationService authorizationService;
     private final List<String> genres = new ArrayList<>();
+    private List<String> prices = new ArrayList<>();
+
 
     @Autowired
     public InsertController(RestaurantInsertService restaurantInsertService, AuthorizationService authorizationService) {
         this.restaurantInsertService = restaurantInsertService;
         this.authorizationService = authorizationService;
-
+        prices.add("Ódýrt");
+        prices.add("Milli");
+        prices.add("Dýrt");
         // Add all available genres
         genres.add("Ítalskur");
         genres.add("Skyndibiti");
@@ -48,14 +53,16 @@ public class InsertController {
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
     public ModelAndView InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
-        // User can only insert a restaurant if he is logged in
-        if (authorizationService.isLoggedIn()) {
+        System.out.println(authorizationService.getUser().getType());
+        // User can only insert a restaurant if he is logged in and is a manager
+        if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
 
             // Saves the restaurant to the database
             restaurantInsertService.save(restaurant);
 
             // Gets things ready for a new restaurant to be added
             model.addAttribute("genres", genres);
+            model.addAttribute("prices", prices);
             model.addAttribute("restaurant", new Restaurant());
 
             // Information for the inserted restaurant to inform the user the inserted restaurant
@@ -78,10 +85,12 @@ public class InsertController {
     @RequestMapping(value = path, method = RequestMethod.GET)
     public ModelAndView insertHome(Model model) {
 
-        // User can only wisit the insert part of the page if he is logged in
-        if (authorizationService.isLoggedIn()) {
-            // Add all genres options
+        // User can only visit the insert part of the page if he is logged in and is a manager
+        if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
+            // Add all genres and price options
             model.addAttribute("genres", genres);
+            model.addAttribute("prices", prices);
+
             // New empty restaurant
             model.addAttribute("restaurant", new Restaurant());
             return new ModelAndView("insert/InsertRestaurant");

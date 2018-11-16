@@ -36,20 +36,15 @@
 
                 <h3>Verðbil</h3>
 
-                    <sf:radiobuttons path="price" items="${prices}" />
+                    <sf:radiobuttons path="price" items="${prices}" checked="checked" />
 
                 <h3>Tegund</h3>
 
-                    <input type="checkbox" name="tegund" value="italskur" /> Ítalskur
-                    <input type="checkbox" name="tegund" value="tapas" /> Tapas
-                    <input type="checkbox" name="tegund" value="vegan" /> Vegan
-                    <input type="checkbox" name="tegund" value="skyndibiti" /> Skyndibiti
-                    <input type="checkbox" name="tegund" value="pizza" /> Pizza
-                    <input type="checkbox" name="tegund" value="tælenskur" /> Tælenskur
-                    <input type="checkbox" name="tegund" value="kebab" />kebab
+                <sf:checkboxes path="genres" items="${genres}"/>
 
-                    </br>
-                    <input type="submit" name="submit" value="Leita" />
+
+                </br>
+                <input type="submit" name="submit" value="Leita" />
             </sf:form>
         </fieldset>
     <c:if test="${not empty results}">
