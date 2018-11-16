@@ -49,7 +49,6 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model){
-
         // The model uses the user attribute in its menu.
         if(this.authorizationService.isLoggedIn()) {
             model.addAttribute("usersession", this.authorizationService.getUser());
