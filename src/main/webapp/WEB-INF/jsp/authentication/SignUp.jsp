@@ -11,43 +11,45 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
     </head>
 
 <!-- Content  -->
     <body>
-        <h1>Éta - Sign Up</h1>
-        <a href="/">Home</a>
-        <a href="/authentication/signup">Sign Up</a>
-        <a href="/authentication/login">Login</a>
-        <a href="/search">Search</a>
-        <a href="/insert">Insert</a>
-
-
+    <header>
+        <ul>
+            <li style="float:left"><a href="/">ÉTA</a></li>
+            <li><a href="/authentication/login" class="button">Skrá inn</a></li>
+            <li><a href="/authentication/signup" class="button">Nýskrá</a></li>
+        </ul>
+    </header>
+        <h1>Nýskráning</h1>
         <sf:form method="POST" modelAttribute="user" action="/authentication/signup">
-
-            <table>
-                <tr>
-                    <td> Name:</td>
-                    <td><sf:input path="username" type="text" placeholder="Enter name"/></td>
-                    <td><sf:errors path="username"/></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><sf:password path="password" placeholder="Enter password"/></td>
-                    <td><sf:errors path="password"/></td>
-                </tr>
-                <tr>
-                    <td>E-mail:</td>
-                    <td><sf:input path="email" type="text" placeholder="Enter email"/></td>
-                    <td><sf:errors path="email"/></td>
-                </tr>
-                <tr>
-                    <td>Restaurant manager </td>
-                    <td><sf:checkbox path="type" value="MANAGER"/></td>
-                </tr>
-            </table>
-
-            <input type="submit" VALUE="Submit"/>
+            <fieldset>
+                <table>
+                    <tr>
+                        <td> Nafn:</td>
+                        <td><sf:input path="username" type="text" placeholder="Veldu notandanafn"/></td>
+                        <td><sf:errors path="username"/></td>
+                    </tr>
+                    <tr>
+                        <td>Lykilorð:</td>
+                        <td><sf:password path="password" placeholder="Veldu lykilorð"/></td>
+                        <td><sf:errors path="password"/></td>
+                    </tr>
+                    <tr>
+                        <td>Netfang:</td>
+                        <td><sf:input path="email" type="text" placeholder="Sláðu inn netfang"/></td>
+                        <td><sf:errors path="email"/></td>
+                    </tr>
+                </table>
+                <p>
+                    Veitingastaðaeigandi
+                    <sf:checkbox path="type" value="MANAGER"/>
+                </p>
+                    <input type="submit" VALUE="Skrá"/>
+            </fieldset>
 
         </sf:form>
 

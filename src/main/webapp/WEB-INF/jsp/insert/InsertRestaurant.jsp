@@ -11,7 +11,7 @@
 <!-- Head -->
 <head>
     <title>Éta</title>
-    <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
 </head>
 <!-- Head -->
@@ -23,8 +23,8 @@
 <header>
     <ul>
         <li style="float:left"><a href="/">ÉTA</a></li>
-        <li><a href="/authentication/login" class="button">Login</a></li>
-        <li><a href="/authentication/signup" class="button">Sign Up</a></li>
+        <li><a href="/authentication/login" class="button">Skrá inn</a></li>
+        <li><a href="/authentication/signup" class="button">Nýskrá</a></li>
     </ul>
 
 </header>
@@ -56,7 +56,7 @@
             <tr>
                 <td><h3>Um veitingastað: </h3></td>
                     <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="description" type="text" placeholder="Sláu eitthvað inn um staðinn"/></td>
+                <td><sf:input path="description" type="text" placeholder="Segðu eitthvað um staðinn"/></td>
             </tr>
             <tr>
                 <td><h3>Verð: </h3></td>
@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td>
-                    Tegundir
+                    <h3>Tegundir</h3>
                 </td>
                 <td>
                     <sf:checkboxes path="genres" items="${genres}"/>

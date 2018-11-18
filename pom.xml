@@ -37,6 +37,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>1.3.0.RELEASE</version>
+        </dependency>
+
         <!--If you wish to connect this application to a PostgreSQL server then add the dependency below but remove the dependency above (the `hsqldb` one) -->
         <!--
         <dependency>

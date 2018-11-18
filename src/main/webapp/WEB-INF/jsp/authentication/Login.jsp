@@ -11,37 +11,48 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
     </head>
 
 <!-- Content  -->
     <body>
-        <h1>Éta - Login</h1>
-        <a href="/">Home</a>
-        <a href="/authentication/signup">Sign Up</a>
-        <a href="/authentication/login">Login</a>
-        <a href="/search">Search</a>
-        <a href="/insert">Insert</a>
+
+    <header>
+        <ul>
+            <li style="float:left"><a href="/">ÉTA</a></li>
+            <li><a href="/authentication/login" class="button">Skrá inn</a></li>
+            <li><a href="/authentication/signup" class="button">Nýskrá</a></li>
+        </ul>
+    </header>
+
+        <h1>Skráðu þig inn</h1>
 
 
         <sf:form method="POST" modelAttribute="user" action="/authentication/login">
 
-            <table>
-                <tr>
-                    <td> Name:</td>
-                    <td><sf:input path="username" type="text" placeholder="Usersname"/></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><sf:password path="password" placeholder="Password"/></td>
-                </tr>
-            </table>
+            <fieldset>
+                <table>
+                    <tr>
+                        <td> Nafn:</td>
+                        <td><sf:input path="username" type="text" placeholder="Notandanafn"/></td>
+                    </tr>
+                    <tr>
+                        <td>Lykilorð:</td>
+                        <td><sf:password path="password" placeholder="Lykilorð"/></td>
+                    </tr>
+                </table>
 
-            <input type="submit" VALUE="Submit"/>
-
+                <input type="submit" VALUE="Skrá inn"/>
+            </fieldset>
+                <h2>
+                    <a href="/authentication/signup">Búa til aðgang</a>
+                    <a href="/">Til baka</a>
+                </h2>
         </sf:form>
-
         <c:choose>
             <c:when test="${not empty user}">
+
                 <table class="userInfo">
                         <tr>
                             <td>${user.username}</td>

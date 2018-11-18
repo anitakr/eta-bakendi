@@ -27,6 +27,26 @@ h1 {
     text-shadow: 2px 2px #333333;
 }
 
+h2 {
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f5f5f5;
+    text-shadow: 2px 2px #333333;
+}
+
+a:link, a:visited {
+    background-color: #333;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: #000;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -54,27 +74,39 @@ li a:hover {
 fieldset {
     background-color: #cccccc;
     opacity: 0.8;
-    max-width: 600px;
+    max-width: 450px;
     padding: 16px;
     margin: 16px auto;
     border-radius: 8px;
+    display: block;
 }
 
 input {
-    background-color: #333333;
-    border: none;
-    color: white;
     padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition-duration: 0.4s;
+    margin: auto;
 }
 
-#name {
-    background-color: white;
-    width: 85%;
+[type=submit] {
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+    position: center;
+}
+#username, #password {
+    background-color: #ffffff;
+    color: black;
+    width: 100%;
+    position: relative;
+}
+
+select {
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
