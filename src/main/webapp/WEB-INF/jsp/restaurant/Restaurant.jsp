@@ -17,14 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
 </head>
 <body>
-<header>
-    <ul>
-        <li style="float:left"><a href="/">ÉTA</a></li>
-        <li><a href="/authentication/login" class="button">Skrá inn</a></li>
-        <li><a href="/authentication/signup" class="button">Nýskrá</a></li>
-    </ul>
-
-</header>
+<%@ include file="../Menu.jsp"%>
 <h1>${restaurant.name}</h1>
 <fieldset>
     <h3> Staðsetning:</h3> ${restaurant.location}

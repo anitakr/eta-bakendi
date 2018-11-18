@@ -11,22 +11,13 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
+        <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
         <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/search.css"/>"/>
-
     </head>
 
 <!-- Content  -->
     <body>
-
-    <header>
-        <ul>
-            <li style="float:left"><a href="/">ÉTA</a></li>
-            <li><a href="/authentication/login" class="button">Skrá inn</a></li>
-            <li><a href="/authentication/signup" class="button">Nýskrá</a></li>
-        </ul>
-
-    </header>
+    <%@ include file="../Menu.jsp"%>
 
         <h1>Finndu þinn veitingastað</h1>
 

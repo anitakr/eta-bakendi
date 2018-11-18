@@ -65,7 +65,7 @@ public class InsertController {
 
             // If user is not logged in we redirect him to the log in site
         } else {
-            return new ModelAndView(new RedirectView("/authentication/login"));
+            return new ModelAndView(new RedirectView("/login"));
         }
     }
 
@@ -88,6 +88,6 @@ public class InsertController {
 
             // If user is not logged in we redirect him to the log in site
         } else
-            return new ModelAndView(new RedirectView("/authentication/login"));
+            return new ModelAndView(new RedirectView("/login"));
     }
 }
