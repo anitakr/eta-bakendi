@@ -23,7 +23,7 @@
         <h1>Skráðu þig inn</h1>
 
 
-        <sf:form method="POST" modelAttribute="user" action="/authentication/login">
+        <sf:form method="POST" modelAttribute="user" action="/login">
 
             <fieldset>
                 <table>
@@ -40,7 +40,7 @@
                 <input type="submit" VALUE="Skrá inn"/>
             </fieldset>
                 <h2>
-                    <a href="/authentication/signup">Búa til aðgang</a>
+                    <a href="/signup">Búa til aðgang</a>
                     <a href="/">Til baka</a>
                 </h2>
         </sf:form>

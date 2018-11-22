@@ -20,7 +20,7 @@
     <%@ include file="../Menu.jsp"%>
 
         <h1>Nýskráning</h1>
-        <sf:form method="POST" modelAttribute="user" action="/authentication/signup">
+        <sf:form method="POST" modelAttribute="user" action="/signup">
             <fieldset>
                 <table>
                     <tr>
