@@ -11,10 +11,20 @@ html {
     font-size: 16px;
     line-height: 1.5;
 }
+body {
+    background-image: url("../css/images/search-bg.jpg");
+    height: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
 
 h1 {
+    color: #ffffff;
     text-align: center;
     font-size: 50px;
+    text-shadow: 2px 2px #333333;
 }
 
 ul {
@@ -39,4 +49,32 @@ li a {
 
 li a:hover {
     background-color: #111;
+}
+
+fieldset {
+    background-color: #cccccc;
+    opacity: 0.8;
+    max-width: 600px;
+    padding: 16px;
+    margin: 16px auto;
+    border-radius: 8px;
+}
+
+input {
+    background-color: #333333;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#name {
+    background-color: white;
+    width: 85%;
 }
