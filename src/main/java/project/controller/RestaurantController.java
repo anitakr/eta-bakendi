@@ -57,11 +57,16 @@ public class RestaurantController {
      */
     @RequestMapping(value="/{id}",  method = RequestMethod.POST)
     public String review(@ModelAttribute("review")Review review, @PathVariable long id, Model model) {
+
         // Get the restaurant the review is for
         Restaurant restaurant = restaurantLookUpService.findOne(id);
 
         // User can only post a review if he is logged in
         if (authorizationService.isLoggedIn()) {
+
+            // For the menu bar
+            model.addAttribute("usersession", this.authorizationService.getUser());
+
             // Add the new review with the correct username to the restaurant and save it
             List<Review> reviews = restaurant.getReviewList();
             reviews.add(review);

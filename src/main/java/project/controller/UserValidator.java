@@ -1,6 +1,5 @@
 package project.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -11,6 +10,11 @@ import project.service.UserService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/** UserValidator
+ * Purpose: Validator to validate the user
+ *
+ * @author Elvar (eas20@hi.is)
+ */
 @Component
 public class UserValidator implements Validator {
 

@@ -53,9 +53,12 @@ public class InsertController {
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
     public ModelAndView InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
-        System.out.println(authorizationService.getUser().getType());
+
         // User can only insert a restaurant if he is logged in and is a manager
         if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
+
+            // For the menu bar
+            model.addAttribute("usersession", this.authorizationService.getUser());
 
             // Saves the restaurant to the database
             restaurantInsertService.save(restaurant);
@@ -87,6 +90,10 @@ public class InsertController {
 
         // User can only visit the insert part of the page if he is logged in and is a manager
         if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
+
+            // For the menu bar
+            model.addAttribute("usersession", this.authorizationService.getUser());
+
             // Add all genres and price options
             model.addAttribute("genres", genres);
             model.addAttribute("prices", prices);
