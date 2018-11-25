@@ -6,6 +6,10 @@ body {
     background-size: cover;
     position: relative;
 }
+
+a {
+    color: black;
+}
 /* input field */
 #name {
     color: #000;
