@@ -10,7 +10,7 @@
 <!-- Head -->
 <head>
     <title>Éta - Fann ekki</title>
-    <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css/"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
 </head>
 
@@ -18,8 +18,8 @@
 <body>
 <%@ include file="../Menu.jsp"%>
 
-<h1>Úps það er fór eitthvað úrskeiðis </h1>
-<h2><a href="/"> Aftur á forsíðu </a></h2>
+<h1>Úps það fór eitthvað úrskeiðis </h1>
+<h2><a class="errormsg" href="/"> Aftur á forsíðu </a></h2>
 
 </body>
 <footer>

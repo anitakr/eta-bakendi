@@ -11,7 +11,9 @@
 <!-- Head -->
     <head>
         <title>Éta</title>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css/"/>
+        <link rel="stylesheet" type="text/css" href="/css/forms.css/"/>
+        <link rel="stylesheet" type="text/css" href="/css/login.css/"/>
         <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
     </head>
 
@@ -39,10 +41,10 @@
 
                 <input type="submit" VALUE="Skrá inn"/>
             </fieldset>
-                <h2>
+                <h4>
                     <a href="/signup">Búa til aðgang</a>
                     <a href="/">Til baka</a>
-                </h2>
+                </h4>
         </sf:form>
         <c:choose>
             <c:when test="${not empty user}">

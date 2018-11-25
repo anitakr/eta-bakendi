@@ -49,9 +49,9 @@ public class RestaurantController {
     }
 
     /**
-     * Adds a new reviw to a restaurant with the given id
+     * Adds a new review to a restaurant with the given id
      * @param review to be added
-     * @param id of the restaurant that gets the new revies
+     * @param id of the restaurant that gets the new reviews
      * @param model for the jsp file returned
      * @return the name of the jsp file to show to the user
      */

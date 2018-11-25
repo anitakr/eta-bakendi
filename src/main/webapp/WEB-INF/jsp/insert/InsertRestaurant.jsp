@@ -11,7 +11,9 @@
 <!-- Head -->
 <head>
     <title>Éta</title>
-    <link rel="stylesheet" type="text/css" href="/css/index.css/"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css/"/>
+    <link rel="stylesheet" type="text/css" href="/css/forms.css/"/>
+    <link rel="stylesheet" type="text/css" href="/css/insert.css/"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather" rel="stylesheet">
 </head>
 <!-- Head -->
@@ -25,39 +27,41 @@
 <h1>
     Setja inn nýjan veitingastað
 </h1>
+
 <c:if test="${inserted}">
-    <p>${newRestaurant.name} skráður!</p>
-    <p style="display: inline">Klikkaðu hér til að skoða: </p><a
-        href="/restaurant/${newRestaurant.id}">${newRestaurant.name}</a>
+    <p>${newRestaurant.name} skráður!</br>
+    Smelltu hér til að skoða:
+    </br>
+        <a href="/restaurant/${newRestaurant.id}">${newRestaurant.name}</a></p>
 </c:if>
 <fieldset>
     <sf:form method="POST" modelAttribute="restaurant" action="insert">
 
         <table>
             <tr>
-                <td><h3>Nafn:</h3></td>
+                <td><h4>Nafn:</h4></td>
                     <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
                 <td><sf:input path="name" type="text" placeholder="Nafn"/></td>
             </tr>
             <tr>
-                <td><h3>Staðsetning</h3></td>
+                <td><h4>Staðsetning</h4></td>
                     <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
                 <td><sf:input path="location" type="text" placeholder="Staðsetning"/></td>
             </tr>
 
             <tr>
-                <td><h3>Um veitingastað: </h3></td>
+                <td><h4>Um veitingastað: </h4></td>
                     <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="description" type="text" placeholder="Sláu eitthvað inn um staðinn"/></td>
+                <td><sf:input path="description" class="textarea" type="text" placeholder="Segðu eitthvað um staðinn"/></td>
             </tr>
             <tr>
-                <td><h3>Verð: </h3></td>
+                <td><h4>Verð: </h4></td>
                 <td><sf:radiobuttons path="price" items="${prices}" checked="checked" /></td>
             </tr>
             <tr>
-                <td>
+                <td><h4>
                     Tegundir
-                </td>
+                </h4></td>
                 <td>
                     <sf:checkboxes path="genres" items="${genres}" />
 

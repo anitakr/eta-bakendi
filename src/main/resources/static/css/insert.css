@@ -1,80 +1,47 @@
 @charset "UTF-8";
 
-html {
-    box-sizing: border-box;
+h4 {
+    color: #000;
 }
 
-html {
-    margin-right: 20px;
-    margin-left: 20px;
-    font-family: Lato, helvetica, arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-body {
-    background-image: url("../css/images/search-bg.jpg");
-    height: 800px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-h1 {
-    color: #ffffff;
+p {
     text-align: center;
-    font-size: 50px;
-    text-shadow: 2px 2px #333333;
+    background-color: #90ee90;
+    font-size: 20px;
+    height: 150px;
+    width: 300px;
+    margin: auto;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: right;
-}
-
-li a {
-    display: block;
+a:link, a:visited {
+    background-color: #000;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
-}
-
-fieldset {
-    background-color: #cccccc;
-    opacity: 0.8;
-    max-width: 600px;
-    padding: 16px;
-    margin: 16px auto;
-    border-radius: 8px;
-}
-
-input {
-    background-color: #333333;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+    padding: 14px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition-duration: 0.4s;
+    border-radius: 90px;
 }
 
-#name {
-    background-color: white;
-    width: 85%;
+a:hover, a:active {
+    background-color: #333;
+
 }
+
+/* Input fields*/
+#name, #location, #description {
+    color: #000;
+    background-color: #cccccc;
+    border: 1px solid #555;
+    border-radius: 90px;
+    width: 85%;
+    cursor: auto;
+}
+span{
+    border-radius: 90px;
+}
+span:hover {
+    background-color: #cccccc;
+}
+
+
