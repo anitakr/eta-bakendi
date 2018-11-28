@@ -7,8 +7,11 @@ body {
     position: relative;
 }
 
-a {
+.result {
     color: black;
+    background-color: cornflowerblue;
+    padding: 10px;
+    font-size: x-large;
 }
 /* input field */
 #name {

@@ -53,7 +53,7 @@
         <fieldset>
         <h3>Leitarniðurstöður</h3>
         <c:forEach var="restaurant" items="${results}">
-            <a href="/restaurant/${restaurant.id}">${restaurant.name}</a>
+            <a class="result" href="/restaurant/${restaurant.id}">${restaurant.name}</a>
         </c:forEach>
         </fieldset>
     </c:if>
