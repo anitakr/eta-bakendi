@@ -39,6 +39,11 @@ public class RestaurantController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String restaurant(@PathVariable long id, Model model) {
+
+        // For the menu bar
+        if (authorizationService.isLoggedIn()) {
+            model.addAttribute("usersession", this.authorizationService.getUser());
+        }
         // Get the restaurant from the database
         Restaurant result = restaurantLookUpService.findOne(id);
         // Add it to the model
