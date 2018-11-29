@@ -1,6 +1,7 @@
 <p align="center" style="color: blue;">
   <b> Éta </b>
 </p>
+=============
 
 ## Íslenska
 Verkefni í Hugbúnaðarverkefni 1 
