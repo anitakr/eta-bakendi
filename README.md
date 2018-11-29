@@ -1,4 +1,6 @@
-# Éta
+<p align="center">
+  ### Éta
+</p>
 
 ## Íslenska
 Verkefni í Hugbúnaðarverkefni 1 
