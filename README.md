@@ -18,8 +18,9 @@ Góða skemmtun!
 ### Verkefnið
 Leitarvél fyrir veitingastaði þar sem hægt er að leita eftir nafni, verði og tegund. Einnig geta eigendur veitingastaða skráð sinn veitingastað inn í kerfið.  
 
-Til þess að setja inn nýjan veitingastað þarf viðkomandi að vera innskráður sem veitingastaðaeigandi. \
-Athugið að þar sem gagnagrunnurinn er tómur þá þarf að byrja á því að bæta við veitingastöðum til að fá einhverjar niðurstöður úr leitarvélinni.
+Athugasemdir:  
+* Til þess að setja inn nýjan veitingastað þarf viðkomandi að vera innskráður sem veitingastaðaeigandi. \
+* Athugið að þar sem gagnagrunnurinn er tómur þá þarf að byrja á því að bæta við veitingastöðum til að fá einhverjar niðurstöður úr leitarvélinni.
   
 ## English
 This is a project in Hugbúnaðarverkefni 1
