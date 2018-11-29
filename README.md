@@ -8,8 +8,8 @@ Elvar Sturluson \
 Tinna Sturludóttir
 
 ### Síðan keyrð
-Verkefnið klónað inn í IntelliJ og keyrt þar.
-Opna netvafra á localhost:8080
+Verkefnið klónað inn í IntelliJ og keyrt þar. \
+Opna netvafra á localhost:8080 \
 Góða skemmtun!
 
 ### Verkefnið
