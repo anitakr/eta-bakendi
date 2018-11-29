@@ -39,6 +39,6 @@ Have fun!
 This project is a website where you search for restaurants by name, price range and theme or type. \
 Also, a owner of a restaurant can register his restaurant so it shows up during searchs. \
   \
-Notes:\ 
-You have to tick the "Veitingastaðaeigandi" check-box to be able to register a restaurant. \ 
-The database will be empty when you run it. \
+Notes: \   
+You have to tick the "Veitingastaðaeigandi" check-box to be able to register a restaurant. \   
+The database will be empty when you run it. \  
