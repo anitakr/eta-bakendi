@@ -1,4 +1,4 @@
-<p align="center" style="font-size:160%;">
+<p align="center" style="color: blue;">
   <b> Éta </b>
 </p>
 
