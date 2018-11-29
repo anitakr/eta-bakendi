@@ -1,5 +1,5 @@
 <p align="center">
-  <font size="20"><b> Éta </b></font>
+  <font size="6"><b> Éta </b></font>
 </p>
 
 ## Íslenska
