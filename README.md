@@ -19,11 +19,13 @@ Leitarvél fyrir veitingastaði þar sem hægt er að leita eftir nafni, verði 
 
 Til þess að setja inn nýjan veitingastað þarf viðkomandi að vera innskráður sem veitingastaðaeigandi. \
 Athugið að þar sem gagnagrunnurinn er tómur þá þarf að byrja á því að bæta við veitingastöðum til að fá einhverjar niðurstöður úr leitarvélinni.
-
-
+  
+  
+  
+  
 ## English
 
-We are:  
+
 ### Hópur 3
 Aníta Kristjánsdóttir \
 Elvar Sturluson \
