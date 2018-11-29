@@ -3,8 +3,8 @@
 ## Íslenska
 Verkefni í Hugbúnaðarverkefni 1 
 
-Við erum:  
 ### Hópur 3
+Við erum:  
 Aníta Kristjánsdóttir \
 Elvar Sturluson \
 Tinna Sturludóttir
@@ -25,8 +25,8 @@ Athugið að þar sem gagnagrunnurinn er tómur þá þarf að byrja á því a�
   
 ## English
 
-
-### Hópur 3
+### Group 3
+We are:  
 Aníta Kristjánsdóttir \
 Elvar Sturluson \
 Tinna Sturludóttir
