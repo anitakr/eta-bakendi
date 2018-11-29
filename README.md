@@ -1,6 +1,4 @@
-<p align="center" style="color: blue;">
-  <b> Éta </b>
-</p>
+Éta 
 =============
 
 ## Íslenska
