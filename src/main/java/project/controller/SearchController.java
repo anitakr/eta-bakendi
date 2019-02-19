@@ -3,10 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Restaurant;
 import project.service.AuthorizationService;
 import project.service.RestaurantSearchService;
@@ -19,7 +16,8 @@ import java.util.List;
  * Path: "/search"
  * Purpose: Controller for the home page of Éta.
  */
-@Controller
+@RestController
+@RequestMapping("/search")
 public class SearchController {
 
     private final String path = "/search";
@@ -54,20 +52,24 @@ public class SearchController {
      *
      * @return the search jsp with input fields
      */
-    @RequestMapping(value = path, method = RequestMethod.GET)
-    public String searchHome(Model model) {
+    //@RequestMapping(value = path, method = RequestMethod.GET)
+    @GetMapping
+    public Restaurant searchHome(Model model) {
 
         // For the menu bar
-        if(this.authorizationService.isLoggedIn()) {
-            model.addAttribute("usersession", this.authorizationService.getUser());
-        }
-
-        // Search parameters will be collected into a Restaurant object
-        model.addAttribute("restaurant", new Restaurant());
-        // Show all prices category
-        model.addAttribute("prices", prices);
-        model.addAttribute("genres", genres);
-        return path + "/Search";
+//        if(this.authorizationService.isLoggedIn()) {
+//            model.addAttribute("usersession", this.authorizationService.getUser());
+//        }
+//
+//        // Search parameters will be collected into a Restaurant object
+//        model.addAttribute("restaurant", new Restaurant());
+//        // Show all prices category
+//        model.addAttribute("prices", prices);
+//        model.addAttribute("genres", genres);
+        Restaurant restaurant1  = new Restaurant();
+        restaurant1.setName("NAME");
+        return restaurant1;
+        //return path + "/Search";
     }
 
     /**
@@ -78,7 +80,7 @@ public class SearchController {
      * @return a jsp file containing the search site with added search resaults
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
-    public String search(@ModelAttribute("restaurant") Restaurant restaurant, @RequestParam("useName") boolean searchByName, Model model) {
+    public Restaurant search(@ModelAttribute("restaurant") Restaurant restaurant, @RequestParam("useName") boolean searchByName, Model model) {
 
 
         // For the menu bar
@@ -102,6 +104,9 @@ public class SearchController {
         model.addAttribute("prices", prices);
         model.addAttribute("genres", genres);
         model.addAttribute("restaurant", new Restaurant());
-        return path + "/Search";
+        Restaurant restaurant1  = new Restaurant();
+        restaurant1.setName("NAME");
+        //return path + "/Search";
+        return restaurant1;
     }
 }
