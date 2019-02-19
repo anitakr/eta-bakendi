@@ -80,7 +80,7 @@ public class SearchController {
      * @return a jsp file containing the search site with added search resaults
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
-    public Restaurant search(@ModelAttribute("restaurant") Restaurant restaurant, @RequestParam("useName") boolean searchByName, Model model) {
+    public List<Restaurant> search(@ModelAttribute("restaurant") Restaurant restaurant, @RequestParam("useName") boolean searchByName, Model model) {
 
 
         // For the menu bar
@@ -107,6 +107,7 @@ public class SearchController {
         Restaurant restaurant1  = new Restaurant();
         restaurant1.setName("NAME");
         //return path + "/Search";
-        return restaurant1;
+        return results;
+
     }
 }
