@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * This controller handles it when a user inserts a restaurant to the database
  */
-@Controller
+@RestController
 public class InsertController {
 
     private final String path = "/insert";
@@ -52,58 +52,20 @@ public class InsertController {
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
-    public ModelAndView InsertRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, Model model) {
+    public Restaurant InsertRestaurant(@RequestBody Restaurant restaurant) {
 
         // User can only insert a restaurant if he is logged in and is a manager
-        if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
-
-            // For the menu bar
-            model.addAttribute("usersession", this.authorizationService.getUser());
+        if (true){ //authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
 
             // Saves the restaurant to the database
             restaurantInsertService.save(restaurant);
 
-            // Gets things ready for a new restaurant to be added
-            model.addAttribute("genres", genres);
-            model.addAttribute("prices", prices);
-            model.addAttribute("restaurant", new Restaurant());
-
-            // Information for the inserted restaurant to inform the user the inserted restaurant
-            model.addAttribute("newRestaurant", restaurant);
-            model.addAttribute("inserted", true);
-            return new ModelAndView( "insert/InsertRestaurant");
+            return restaurant;
 
             // If user is not logged in we redirect him to the log in site
         } else {
-            return new ModelAndView(new RedirectView("/login"));
+            return restaurant;
         }
     }
 
-    /**
-     * Displays a form to insert values for new restaurant
-     *
-     * @param model for information for the jsp file
-     * @return the name of the jsp file to use
-     */
-    @RequestMapping(value = path, method = RequestMethod.GET)
-    public ModelAndView insertHome(Model model) {
-
-        // User can only visit the insert part of the page if he is logged in and is a manager
-        if (authorizationService.isLoggedIn() && authorizationService.getUser().getType() == User.Type.MANAGER) {
-
-            // For the menu bar
-            model.addAttribute("usersession", this.authorizationService.getUser());
-
-            // Add all genres and price options
-            model.addAttribute("genres", genres);
-            model.addAttribute("prices", prices);
-
-            // New empty restaurant
-            model.addAttribute("restaurant", new Restaurant());
-            return new ModelAndView("insert/InsertRestaurant");
-
-            // If user is not logged in we redirect him to the log in site
-        } else
-            return new ModelAndView(new RedirectView("/login"));
-    }
 }

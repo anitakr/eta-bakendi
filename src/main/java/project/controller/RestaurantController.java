@@ -3,10 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Restaurant;
 import project.persistence.entities.Review;
 import project.service.AuthorizationService;
@@ -16,7 +13,7 @@ import java.util.List;
 /**
  * This controller displays one restaurant and handles reviews posted
  */
-@Controller
+@RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
 
@@ -38,39 +35,29 @@ public class RestaurantController {
      * @return name of the jsp file to use
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String restaurant(@PathVariable long id, Model model) {
+    public Restaurant restaurant(@PathVariable long id, Model model) {
 
-        // For the menu bar
-        if (authorizationService.isLoggedIn()) {
-            model.addAttribute("usersession", this.authorizationService.getUser());
-        }
         // Get the restaurant from the database
         Restaurant result = restaurantLookUpService.findOne(id);
-        // Add it to the model
-        model.addAttribute("restaurant", result);
-        // Add a empty review if the user wants to add one
-        model.addAttribute("review", new Review());
-        return path + "/Restaurant";
+        return result;
     }
 
     /**
      * Adds a new review to a restaurant with the given id
      * @param review to be added
      * @param id of the restaurant that gets the new reviews
-     * @param model for the jsp file returned
      * @return the name of the jsp file to show to the user
      */
     @RequestMapping(value="/{id}",  method = RequestMethod.POST)
-    public String review(@ModelAttribute("review")Review review, @PathVariable long id, Model model) {
+    public Restaurant review(@RequestBody Review review, @PathVariable long id) {
 
         // Get the restaurant the review is for
         Restaurant restaurant = restaurantLookUpService.findOne(id);
 
         // User can only post a review if he is logged in
-        if (authorizationService.isLoggedIn()) {
+        if (true) { //authorizationService.isLoggedIn()) {
 
             // For the menu bar
-            model.addAttribute("usersession", this.authorizationService.getUser());
 
             // Add the new review with the correct username to the restaurant and save it
             List<Review> reviews = restaurant.getReviewList();
@@ -82,11 +69,9 @@ public class RestaurantController {
 
             // If user is not logged in we do not save is his review but show an error message
         } else {
-            model.addAttribute("noUserForReview", true);
+//            model.addAttribute("noUserForReview", true);
         }
 
-        // Add the new restaurant to model again to display it
-        model.addAttribute("restaurant", restaurant);
-        return path + "/Restaurant";
+        return restaurant;
     }
 }

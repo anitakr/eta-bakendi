@@ -50,7 +50,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.25.2</version>
+        </dependency>
         <!--If you wish to connect this application to a PostgreSQL server then add the dependency below but remove the dependency above (the `hsqldb` one) -->
         <!--
         <dependency>
