@@ -20,6 +20,7 @@ public class Restaurant {
     @Column(name="genres")
     private List<String> genres = new ArrayList<>();
 
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Review> reviewList;
 

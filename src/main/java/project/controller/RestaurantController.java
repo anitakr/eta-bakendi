@@ -62,8 +62,8 @@ public class RestaurantController {
             // Add the new review with the correct username to the restaurant and save it
             List<Review> reviews = restaurant.getReviewList();
             reviews.add(review);
-//            review.setRestaurant(restaurant);
-//            review.setUsername(authorizationService.getUser().getUsername()); # TODO uncomment
+            review.setRestaurant(restaurant);
+//            review.setUsername(authorizatiosnService.getUser().getUsername()); # TODO uncomment
             restaurant.setReviewList(reviews);
             restaurantLookUpService.save(restaurant);
 

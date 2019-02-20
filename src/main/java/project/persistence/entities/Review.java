@@ -1,5 +1,7 @@
 package project.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +14,9 @@ public class Review {
     private int rating;
     private String text;
     private String username;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
 
