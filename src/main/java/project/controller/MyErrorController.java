@@ -6,13 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import project.service.AuthorizationService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 
-@Controller
+@RestController
 public class MyErrorController implements ErrorController {
 
     private final AuthorizationService authorizationService;
@@ -25,23 +26,17 @@ public class MyErrorController implements ErrorController {
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-        // For the menu bar
-        if(this.authorizationService.isLoggedIn()) {
-            model.addAttribute("usersession", this.authorizationService.getUser());
-        }
-
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error/Error-404";
+                return "Error-404";
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "error/Error-500";
+                return "Error-500";
             }
         }
 
-        return "error/error";
+        return "error";
     }
 
     @Override

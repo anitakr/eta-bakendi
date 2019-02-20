@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.User;
 import project.service.AuthorizationService;
 import project.service.UserService;
@@ -21,7 +18,7 @@ import project.service.UserService;
  *
  * @author Elvar (eas20@hi.is)
  */
-@Controller
+@RestController
 public class AuthenticationController {
 
     // ===================
@@ -67,20 +64,6 @@ public class AuthenticationController {
     // Page Methods
     // =============
 
-    /** signup(Model model)
-     * Path: "/signup"
-     * Purpose: Display the signup page with GET.
-     *
-     * @return The view
-     */
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signup(Model model){
-
-        model.addAttribute("user", new User()); // For the form
-
-        model.addAttribute("currentUser", authorizationService.getUser());
-        return "authentication/SignUp";
-    }
 
     /** signup(User user, BindingResult res)
      * Path: "/signup"
@@ -92,11 +75,11 @@ public class AuthenticationController {
      * @return The view
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signupPost(@ModelAttribute("user") @Validated User user, BindingResult res){
+    public User signupPost(@RequestBody @Validated User user, BindingResult res){
 
         // If the validator found any error we show the form again with error messages
         if(res.hasErrors()) {
-            return "authentication/SignUp";
+            return null;
         }
 
         // If the user did not select that he is a restaurant owner he is set as CASUAL user
@@ -105,21 +88,9 @@ public class AuthenticationController {
         }
 
         this.userService.save(user);
-        return "redirect:/"; // Redirect the user to the home page.
+        return user;
     }
 
-    /** login(Model model)
-     * Path: "/login"
-     * Purpose: Display the signup page with GET.
-     *
-     * @return The view
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model){
-
-        model.addAttribute("user", new User()); // For the form
-        return "authentication/Login";
-    }
 
     /** login(User user)
      * Path: "/login"
@@ -130,7 +101,7 @@ public class AuthenticationController {
      * @return The view
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(@ModelAttribute("user") User user){
+    public String loginPost(@RequestBody User user){
 
         User u = this.userService.findByNameAndPass(user.getUsername(), user.getPassword()); // Search for user
 

@@ -63,7 +63,7 @@ public class RestaurantController {
             List<Review> reviews = restaurant.getReviewList();
             reviews.add(review);
             review.setRestaurant(restaurant);
-            review.setUsername(authorizationService.getUser().getUsername());
+//            review.setUsername(authorizationService.getUser().getUsername()); # TODO uncomment
             restaurant.setReviewList(reviews);
             restaurantLookUpService.save(restaurant);
 
