@@ -48,7 +48,6 @@ public class InsertController {
      * Inserts a restaurant objet into the database
      *
      * @param restaurant to insert into the database
-     * @param model      for the jsp file returned
      * @return the name of the jsp file to use
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
