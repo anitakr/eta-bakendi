@@ -1,15 +1,20 @@
 package project.controller;
 
+import javassist.tools.web.BadHttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import project.persistence.entities.User;
 import project.service.AuthorizationService;
 import project.service.UserService;
+
+import javax.xml.ws.Response;
 
 
 /** AuthenticationController
@@ -76,10 +81,10 @@ public class AuthenticationController {
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public User signupPost(@RequestBody @Validated User user, BindingResult res){
-
+        System.out.println("ADFADf");
         // If the validator found any error we show the form again with error messages
         if(res.hasErrors()) {
-            return null;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
         // If the user did not select that he is a restaurant owner he is set as CASUAL user
@@ -101,7 +106,7 @@ public class AuthenticationController {
      * @return The view
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(@RequestBody User user){
+    public User loginPost(@RequestBody User user){
 
         User u = this.userService.findByNameAndPass(user.getUsername(), user.getPassword()); // Search for user
 
@@ -109,22 +114,10 @@ public class AuthenticationController {
 
         // Check if the login successful, then redirect to the home page
         if(this.authorizationService.isLoggedIn()) {
-            return "redirect:/";
+            return this.authorizationService.getUser();
         }
         else {
-            return "authentication/Login";
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-    }
-
-    /** logout()
-     * Path: "/logout"
-     * Purpose: Log out the user.
-     *
-     * @return The view
-     */
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(){
-        this.authorizationService.setUser(null);
-        return "redirect:/";
     }
 }
