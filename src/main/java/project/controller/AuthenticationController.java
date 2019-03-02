@@ -81,10 +81,9 @@ public class AuthenticationController {
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public User signupPost(@RequestBody @Validated User user, BindingResult res){
-        System.out.println("ADFADf");
         // If the validator found any error we show the form again with error messages
         if(res.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some inputs incorrect");
         }
 
         // If the user did not select that he is a restaurant owner he is set as CASUAL user
@@ -110,14 +109,12 @@ public class AuthenticationController {
 
         User u = this.userService.findByNameAndPass(user.getUsername(), user.getPassword()); // Search for user
 
-        this.authorizationService.setUser(u); // Update the session
-
         // Check if the login successful, then redirect to the home page
-        if(this.authorizationService.isLoggedIn()) {
-            return this.authorizationService.getUser();
+        if(u != null) {
+            return u;
         }
         else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not a valid user");
         }
     }
 }

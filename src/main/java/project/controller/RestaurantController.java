@@ -1,13 +1,18 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import project.persistence.entities.Restaurant;
 import project.persistence.entities.Review;
+import project.persistence.entities.User;
 import project.service.AuthorizationService;
 import project.service.RestaurantLookUpService;
+import project.service.UserService;
+
 import java.util.List;
 
 /**
@@ -19,10 +24,10 @@ public class RestaurantController {
 
     private final String path = "/restaurant";
     private RestaurantLookUpService restaurantLookUpService;
-    private AuthorizationService authorizationService;
+    private UserService authorizationService;
 
     @Autowired
-    public RestaurantController(RestaurantLookUpService restaurantLookUpService, AuthorizationService authorizationService) {
+    public RestaurantController(RestaurantLookUpService restaurantLookUpService, UserService authorizationService) {
         this.restaurantLookUpService = restaurantLookUpService;
         this.authorizationService  = authorizationService;
     }
@@ -54,24 +59,20 @@ public class RestaurantController {
         // Get the restaurant the review is for
         Restaurant restaurant = restaurantLookUpService.findOne(id);
 
+
         // User can only post a review if he is logged in
-        if (true) { //authorizationService.isLoggedIn()) {
 
-            // For the menu bar
+        // For the menu bar
 
-            // Add the new review with the correct username to the restaurant and save it
-            List<Review> reviews = restaurant.getReviewList();
-            reviews.add(review);
-            review.setRestaurant(restaurant);
-//            review.setUsername(authorizatiosnService.getUser().getUsername()); # TODO uncomment
-            restaurant.setReviewList(reviews);
-            restaurantLookUpService.save(restaurant);
+        // Add the new review with the correct username to the restaurant and save it
+        List<Review> reviews = restaurant.getReviewList();
+        reviews.add(review);
+        review.setRestaurant(restaurant);
+        review.setUsername(review.getUsername());
+        restaurant.setReviewList(reviews);
+        restaurantLookUpService.save(restaurant);
 
             // If user is not logged in we do not save is his review but show an error message
-        } else {
-//            model.addAttribute("noUserForReview", true);
-        }
-
         return restaurant;
     }
 }
