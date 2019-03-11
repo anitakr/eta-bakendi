@@ -56,7 +56,6 @@ public class InsertController {
      */
     @RequestMapping(value = path, method = RequestMethod.POST)
     public Restaurant InsertRestaurant(@RequestBody InsertInformation information) {
-
         // User can only insert a restaurant if he is logged in and is a manager
         if (authorizationService.findByNameAndPass(information.getUser().getUsername(), information.getUser().getPassword()) != null && information.getUser().getType() == User.Type.MANAGER) {
 
